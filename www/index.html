@@ -29,9 +29,14 @@
         <script src="/js/lib/jquery.sonic-gauge.min.js"></script>
     </head>
     <body>
-        <div>
-            <div id='default' class="gauge"></div>
+        <div class="gauge_wrap">
+            <div id='bpm_meter' class="gauge"></div>
+            <div id='zone_meter' class="gauge"></div>
         </div>
+        <form>
+            <input type="text" name="bpm">
+            <input type="submit">
+        </form>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">

@@ -34,7 +34,45 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         console.log('deviceready');
-        var defaultGauge = $('#default').SonicGauge();
-        defaultGauge.SonicGauge('val', 60);
+        var bpmMeter = $('#bpm_meter').SonicGauge({
+            label   : 'BPM',
+            start   : {angle: -225, num: 0},
+            end     : {angle: 45, num: 220},
+            markers : [
+                {
+                    gap: 20,
+                    line: {"width": 20, "stroke": "none", "fill": "#eeeeee"},
+                    text: {"space": 22, "text-anchor": "middle", "fill": "#333333", "font-size": 18}
+                },{
+                    gap: 10, 
+                    line: {"width": 12, "stroke": "none", "fill": "#aaaaaa"},
+                    text: {"space": 18, "text-anchor": "middle", "fill": "#333333", "font-size": 12}
+                },{
+                    gap: 5, 
+                    line: {"width": 8, "stroke": "none", "fill": "#999999"}
+                }
+            ],
+            animation_speed : 100,
+            diameter: 400
+        });
+        var zoneMeter = $('#zone_meter').SonicGauge({
+            label   : 'Zone (%)',
+            start   : {angle: -225, num: 0},
+            end     : {angle: 45, num: 100},
+            markers : [
+                {
+                    gap: 10,
+                    line: {"width": 20, "stroke": "none", "fill": "#eeeeee"},
+                    text: {"space": 22, "text-anchor": "middle", "fill": "#333333", "font-size": 18}
+                },{
+                    gap: 5, 
+                    line: {"width": 8, "stroke": "none", "fill": "#999999"}
+                }
+            ],
+            animation_speed : 100,
+            diameter: 400
+        });
+        bpmMeter.SonicGauge('val', 90);
+        zoneMeter.SonicGauge('val', 90);
     },
 };
