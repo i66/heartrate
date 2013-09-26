@@ -52,7 +52,7 @@ var app = {
                     line: {"width": 8, "stroke": "none", "fill": "#999999"}
                 }
             ],
-            animation_speed : 100,
+            animation_speed : 300,
             diameter: 400
         });
         var zoneMeter = $('#zone_meter').SonicGauge({
@@ -69,10 +69,57 @@ var app = {
                     line: {"width": 8, "stroke": "none", "fill": "#999999"}
                 }
             ],
-            animation_speed : 100,
+            animation_speed : 300,
             diameter: 400
         });
         bpmMeter.SonicGauge('val', 90);
         zoneMeter.SonicGauge('val', 90);
+
+        var userAge = 27;
+        var userBpm = 60;
+
+        $("#bpm_form").submit(function(e){
+            e.preventDefault();
+            setTimeout(incrementHeartRate, 200);
+        });
+
+        function incrementHeartRate(){
+            userBpm += 3;
+            zone = heartRateZone(userAge, userBpm);
+            bpmMeter.SonicGauge('val', userBpm);
+            zoneMeter.SonicGauge('val', zone['percentage']);
+            if (userBpm < 200) {
+                setTimeout(incrementHeartRate, 200);
+            }
+        }
+        setTimeout(incrementHeartRate, 200);
     },
 };
+
+function heartRateZone(age, bpm) {
+    var maxBpm = 220 - age;
+    var zone = 1;
+    var percentage = 0;
+    var zone2Min = maxBpm * 0.6;
+    var zone3Min = maxBpm * 0.7;
+    var zone4Min = maxBpm * 0.8;
+    var zone5Min = maxBpm * 0.9;
+    if (bpm < zone2Min) {
+        zone = 1;
+        zonePercentage = (bpm / zone2Min) * 100;
+    } else if (bpm >= zone2Min && bpm < zone3Min) {
+        zone = 2;
+        zonePercentage = (bpm - zone2Min) / (maxBpm * 0.1 ) * 100;
+    } else if (bpm >= zone3Min && bpm < zone4Min) {
+        zone = 3;
+        zonePercentage = (bpm - zone3Min) / (maxBpm * 0.1 ) * 100;
+    } else if (bpm >= zone4Min && bpm < zone5Min) {
+        zone = 4;
+        zonePercentage = (bpm - zone4Min) / (maxBpm * 0.1 ) * 100;
+    } else if (bpm >= zone5Min) {
+        zone = 5;
+        zonePercentage = (bpm - zone5Min) / (maxBpm * 0.1 ) * 100;
+    }
+    return {'number': zone, 'percentage': zonePercentage.toFixed(0)};
+}
+
