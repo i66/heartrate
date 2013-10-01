@@ -33,7 +33,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        console.log('deviceready');
+
         var bpmMeter = $('#bpm_meter').SonicGauge({
             label   : 'BPM',
             start   : {angle: -225, num: 0},
@@ -53,7 +53,7 @@ var app = {
                 }
             ],
             animation_speed : 300,
-            diameter: 400
+            diameter: 300
         });
         var zoneMeter = $('#zone_meter').SonicGauge({
             label   : 'Zone (%)',
@@ -70,7 +70,7 @@ var app = {
                 }
             ],
             animation_speed : 300,
-            diameter: 400
+            diameter: 300
         });
         bpmMeter.SonicGauge('val', 90);
         zoneMeter.SonicGauge('val', 90);
@@ -93,7 +93,7 @@ var app = {
             }
         }
         setTimeout(incrementHeartRate, 200);
-    },
+    }
 };
 
 function heartRateZone(age, bpm) {

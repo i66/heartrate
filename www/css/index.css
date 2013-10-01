@@ -121,3 +121,7 @@ h1 {
 .gauge {
     margin: 0 auto;
 }
+input{
+    height: 20px;
+    width: 20px;
+}
