@@ -53,7 +53,7 @@ var app = {
                 }
             ],
             animation_speed : 300,
-            diameter: 300
+            diameter: 240
         });
         var zoneMeter = $('#zone_meter').SonicGauge({
             label   : 'Zone (%)',
@@ -70,7 +70,7 @@ var app = {
                 }
             ],
             animation_speed : 300,
-            diameter: 300
+            diameter: 240
         });
         bpmMeter.SonicGauge('val', 90);
         zoneMeter.SonicGauge('val', 90);
